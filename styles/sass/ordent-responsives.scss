@@ -1,0 +1,156 @@
+$mobile : 400px;
+$phablet : 550px;
+$tablet : 750px;
+$desktop : 1000px;
+$deskhd : 1200px;
+.container{
+    width: 95%;
+    @media (min-width : $phablet){
+        width: 90%;
+    }
+    @media (min-width: $tablet){
+        width: 85%;
+    }
+    @media (min-width: $desktop){
+        width: 80%;
+    }
+}
+
+.width-90{
+    @media(min-width : $tablet){
+        width: 90%;
+    }
+    @media(min-width : $desktop){
+        width: 90%;
+    }
+}
+
+.width-95{
+    @media(min-width : $tablet){
+        width: 95%;
+    }
+    @media(min-width : $desktop){
+        width: 95%;
+    }
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row.reverse{
+    flex-direction: row-reverse;
+}
+
+.stack{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.stack.row.reverse{
+    flex-direction: column-reverse;
+}
+
+.space-start{
+    justify-content: flex-start;
+}
+
+.space-start{
+    justify-content: flex-end;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.space-center{
+    justify-content: center;
+}
+
+.space-around{
+    justify-content: space-around;
+}
+
+.grow{
+    display: grid;
+}
+@for $i from 1 through 12{
+    .flex-sm-#{$i}{
+        max-width: 100%/(12/$i);
+    }
+
+    .row{
+        .offset-#{$i}{
+            margin-left: 100%/(12/$i);
+        }
+    }
+
+    .row.reverse{
+        .offset-#{$i}{
+            margin-right: 100%/(12/$i);
+        }
+    }
+
+    .stack{
+        .offset-#{$i}{
+            margin-top: 100%/(12/$i);
+        }
+    }
+
+    .stack.reverse{
+        .offset-#{$i}{
+            margin-bottom: 100%/(12/$i);
+        }
+    }
+
+    .flex-right{
+        margin-left: auto;
+    }
+
+    .flex-left{
+        margin-right: auto;
+    }
+
+    .row-break{
+        flex-basis: 100%;
+        width: 0px; 
+        height: 0px; 
+        overflow: hidden;
+    }
+
+    @media(min-width : $tablet){
+        .flex-md-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+    }
+
+    @media(min-width : $desktop){
+        .flex-lg-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+    }
+
+    @media(min-width : $deskhd){
+        .flex-xl-#{$i}{
+            max-width: 100%/(12/$i);
+        }   
+    }
+
+}
+
+@each $padding in 5, 10, 15, 20, 25, 30, 35, 40, 45, 50{
+    .padding-#{$padding}{
+        padding: 0 #{$padding}px;
+    }
+
+    .padding-#{$padding}.gutter{
+        padding: 0 #{$padding/2}px;
+        margin: 0 #{$padding/2}px;
+    }
+}
+ 

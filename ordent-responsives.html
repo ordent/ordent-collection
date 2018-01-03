@@ -1,0 +1,613 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="ordent-responsives">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+            .container {
+  width: 95%; }
+  @media (min-width: 550px) {
+    .container {
+      width: 90%; } }
+  @media (min-width: 750px) {
+    .container {
+      width: 85%; } }
+  @media (min-width: 1000px) {
+    .container {
+      width: 80%; } }
+
+@media (min-width: 750px) {
+  .width-90 {
+    width: 90%; } }
+
+@media (min-width: 1000px) {
+  .width-90 {
+    width: 90%; } }
+
+@media (min-width: 750px) {
+  .width-95 {
+    width: 95%; } }
+
+@media (min-width: 1000px) {
+  .width-95 {
+    width: 95%; } }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.row.reverse {
+  flex-direction: row-reverse; }
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.stack.row.reverse {
+  flex-direction: column-reverse; }
+
+.space-start {
+  justify-content: flex-start; }
+
+.space-start {
+  justify-content: flex-end; }
+
+.space-between {
+  justify-content: space-between; }
+
+.space-center {
+  justify-content: center; }
+
+.space-around {
+  justify-content: space-around; }
+
+.grow {
+  display: grid; }
+
+.flex-sm-1 {
+  max-width: 8.33333%; }
+
+.row .offset-1 {
+  margin-left: 8.33333%; }
+
+.row.reverse .offset-1 {
+  margin-right: 8.33333%; }
+
+.stack .offset-1 {
+  margin-top: 8.33333%; }
+
+.stack.reverse .offset-1 {
+  margin-bottom: 8.33333%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-1 {
+    max-width: 8.33333%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-1 {
+    max-width: 8.33333%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-1 {
+    max-width: 8.33333%; } }
+
+.flex-sm-2 {
+  max-width: 16.66667%; }
+
+.row .offset-2 {
+  margin-left: 16.66667%; }
+
+.row.reverse .offset-2 {
+  margin-right: 16.66667%; }
+
+.stack .offset-2 {
+  margin-top: 16.66667%; }
+
+.stack.reverse .offset-2 {
+  margin-bottom: 16.66667%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-2 {
+    max-width: 16.66667%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-2 {
+    max-width: 16.66667%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-2 {
+    max-width: 16.66667%; } }
+
+.flex-sm-3 {
+  max-width: 25%; }
+
+.row .offset-3 {
+  margin-left: 25%; }
+
+.row.reverse .offset-3 {
+  margin-right: 25%; }
+
+.stack .offset-3 {
+  margin-top: 25%; }
+
+.stack.reverse .offset-3 {
+  margin-bottom: 25%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-3 {
+    max-width: 25%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-3 {
+    max-width: 25%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-3 {
+    max-width: 25%; } }
+
+.flex-sm-4 {
+  max-width: 33.33333%; }
+
+.row .offset-4 {
+  margin-left: 33.33333%; }
+
+.row.reverse .offset-4 {
+  margin-right: 33.33333%; }
+
+.stack .offset-4 {
+  margin-top: 33.33333%; }
+
+.stack.reverse .offset-4 {
+  margin-bottom: 33.33333%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-4 {
+    max-width: 33.33333%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-4 {
+    max-width: 33.33333%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-4 {
+    max-width: 33.33333%; } }
+
+.flex-sm-5 {
+  max-width: 41.66667%; }
+
+.row .offset-5 {
+  margin-left: 41.66667%; }
+
+.row.reverse .offset-5 {
+  margin-right: 41.66667%; }
+
+.stack .offset-5 {
+  margin-top: 41.66667%; }
+
+.stack.reverse .offset-5 {
+  margin-bottom: 41.66667%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-5 {
+    max-width: 41.66667%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-5 {
+    max-width: 41.66667%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-5 {
+    max-width: 41.66667%; } }
+
+.flex-sm-6 {
+  max-width: 50%; }
+
+.row .offset-6 {
+  margin-left: 50%; }
+
+.row.reverse .offset-6 {
+  margin-right: 50%; }
+
+.stack .offset-6 {
+  margin-top: 50%; }
+
+.stack.reverse .offset-6 {
+  margin-bottom: 50%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-6 {
+    max-width: 50%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-6 {
+    max-width: 50%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-6 {
+    max-width: 50%; } }
+
+.flex-sm-7 {
+  max-width: 58.33333%; }
+
+.row .offset-7 {
+  margin-left: 58.33333%; }
+
+.row.reverse .offset-7 {
+  margin-right: 58.33333%; }
+
+.stack .offset-7 {
+  margin-top: 58.33333%; }
+
+.stack.reverse .offset-7 {
+  margin-bottom: 58.33333%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-7 {
+    max-width: 58.33333%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-7 {
+    max-width: 58.33333%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-7 {
+    max-width: 58.33333%; } }
+
+.flex-sm-8 {
+  max-width: 66.66667%; }
+
+.row .offset-8 {
+  margin-left: 66.66667%; }
+
+.row.reverse .offset-8 {
+  margin-right: 66.66667%; }
+
+.stack .offset-8 {
+  margin-top: 66.66667%; }
+
+.stack.reverse .offset-8 {
+  margin-bottom: 66.66667%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-8 {
+    max-width: 66.66667%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-8 {
+    max-width: 66.66667%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-8 {
+    max-width: 66.66667%; } }
+
+.flex-sm-9 {
+  max-width: 75%; }
+
+.row .offset-9 {
+  margin-left: 75%; }
+
+.row.reverse .offset-9 {
+  margin-right: 75%; }
+
+.stack .offset-9 {
+  margin-top: 75%; }
+
+.stack.reverse .offset-9 {
+  margin-bottom: 75%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-9 {
+    max-width: 75%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-9 {
+    max-width: 75%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-9 {
+    max-width: 75%; } }
+
+.flex-sm-10 {
+  max-width: 83.33333%; }
+
+.row .offset-10 {
+  margin-left: 83.33333%; }
+
+.row.reverse .offset-10 {
+  margin-right: 83.33333%; }
+
+.stack .offset-10 {
+  margin-top: 83.33333%; }
+
+.stack.reverse .offset-10 {
+  margin-bottom: 83.33333%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-10 {
+    max-width: 83.33333%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-10 {
+    max-width: 83.33333%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-10 {
+    max-width: 83.33333%; } }
+
+.flex-sm-11 {
+  max-width: 91.66667%; }
+
+.row .offset-11 {
+  margin-left: 91.66667%; }
+
+.row.reverse .offset-11 {
+  margin-right: 91.66667%; }
+
+.stack .offset-11 {
+  margin-top: 91.66667%; }
+
+.stack.reverse .offset-11 {
+  margin-bottom: 91.66667%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-11 {
+    max-width: 91.66667%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-11 {
+    max-width: 91.66667%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-11 {
+    max-width: 91.66667%; } }
+
+.flex-sm-12 {
+  max-width: 100%; }
+
+.row .offset-12 {
+  margin-left: 100%; }
+
+.row.reverse .offset-12 {
+  margin-right: 100%; }
+
+.stack .offset-12 {
+  margin-top: 100%; }
+
+.stack.reverse .offset-12 {
+  margin-bottom: 100%; }
+
+.flex-right {
+  margin-left: auto; }
+
+.flex-left {
+  margin-right: auto; }
+
+.row-break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden; }
+
+@media (min-width: 750px) {
+  .flex-md-12 {
+    max-width: 100%; } }
+
+@media (min-width: 1000px) {
+  .flex-lg-12 {
+    max-width: 100%; } }
+
+@media (min-width: 1200px) {
+  .flex-xl-12 {
+    max-width: 100%; } }
+
+.padding-5 {
+  padding: 0 5px; }
+
+.padding-5.gutter {
+  padding: 0 2.5px;
+  margin: 0 2.5px; }
+
+.padding-10 {
+  padding: 0 10px; }
+
+.padding-10.gutter {
+  padding: 0 5px;
+  margin: 0 5px; }
+
+.padding-15 {
+  padding: 0 15px; }
+
+.padding-15.gutter {
+  padding: 0 7.5px;
+  margin: 0 7.5px; }
+
+.padding-20 {
+  padding: 0 20px; }
+
+.padding-20.gutter {
+  padding: 0 10px;
+  margin: 0 10px; }
+
+.padding-25 {
+  padding: 0 25px; }
+
+.padding-25.gutter {
+  padding: 0 12.5px;
+  margin: 0 12.5px; }
+
+.padding-30 {
+  padding: 0 30px; }
+
+.padding-30.gutter {
+  padding: 0 15px;
+  margin: 0 15px; }
+
+.padding-35 {
+  padding: 0 35px; }
+
+.padding-35.gutter {
+  padding: 0 17.5px;
+  margin: 0 17.5px; }
+
+.padding-40 {
+  padding: 0 40px; }
+
+.padding-40.gutter {
+  padding: 0 20px;
+  margin: 0 20px; }
+
+.padding-45 {
+  padding: 0 45px; }
+
+.padding-45.gutter {
+  padding: 0 22.5px;
+  margin: 0 22.5px; }
+
+.padding-50 {
+  padding: 0 50px; }
+
+.padding-50.gutter {
+  padding: 0 25px;
+  margin: 0 25px; }
+
+        </style>
+    </template>
+</dom-module>

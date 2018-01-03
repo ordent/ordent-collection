@@ -1,0 +1,268 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<!-- <link rel="import" href="bower_components/paper-dialog/paper-dialog.html"> -->
+<link rel="import" href="bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="bower_components/paper-dialog-behavior/paper-dialog-shared-styles.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="./ordent-styles.html">
+<dom-module id="ordent-dialog">
+    <template>
+        <style include="ordent-styles paper-dialog-shared-styles">
+            :host {
+                display: block;
+                --success-color: #43A047;
+                --info-color: #1E88E5;
+                --danger-color: #E53935;
+                --warning-color: #FDD835;
+                min-width: 50%;
+                padding: 0;
+            }
+
+            div {
+                max-width: 100%;
+            }
+
+            paper-dialog-scrollable {
+                min-height: 50px;
+                margin: 0;
+            }
+
+            :host .dialog-header {
+                color: white;
+                font-weight: 700;
+                margin: 0;
+                padding: 20px;
+            }
+
+            :host .dialog-header h4 {
+                margin: 0;
+            }
+
+            :host(.info) .dialog-header {
+                background: var(--info-color);
+            }
+
+            :host(.warning) .dialog-header {
+                background: var(--warning-color);
+                color: #333333;
+            }
+
+            :host(.danger) .dialog-header {
+                background: var(--danger-color);
+            }
+
+            :host(.success) .dialog-header {
+                background: var(--success-color);
+            }
+
+
+            .dialog-content {
+                margin: 40px 20px;
+            }
+
+            .dialog-footer {
+                margin: 40px 0px 20px 0;
+            }
+
+            .dialog-footer-button {
+                border: 1px #333333 solid;
+            }
+
+            .dialog-confirm-button {
+                background: #333333;
+                color: white;
+                font-weight: 700;
+            }
+
+            :host(.info) .dialog-dismiss-button {
+                border-color: var(--info-color);
+            }
+
+            :host(.info) .dialog-confirm-button {
+                background: var(--info-color);
+                border-color: var(--info-color);
+            }
+
+            :host(.warning) .dialog-dismiss-button {
+                border-color: var(--warning-color);
+            }
+
+            :host(.warning) .dialog-confirm-button {
+                background: var(--warning-color);
+                border-color: var(--warning-color);
+                color: #333333;
+            }
+
+            :host(.danger) .dialog-dismiss-button {
+                border-color: var(--danger-color);
+            }
+
+            :host(.danger) .dialog-confirm-button {
+                background: var(--danger-color);
+                border-color: var(--danger-color);
+            }
+
+            :host(.success) .dialog-dismiss-button {
+                border-color: var(--success-color);
+            }
+
+            :host(.success) .dialog-confirm-button {
+                background: var(--success-color);
+                border-color: var(--success-color);
+            }
+        </style>
+        <div class="dialog-header">
+            <h4>[[title]]</h4>
+        </div>
+        <div class="dialog-content">
+            <slot></slot>
+            <paper-dialog-scrollable>
+                <slot name="scrollable"></slot>
+            </paper-dialog-scrollable>
+            <template is="dom-if" if="[[list]]">
+                <ul>
+                    <template is="dom-repeat" items="[[listContent]]" as="item">
+                        <li>[[item]]</li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+        <div class="dialog-footer alignCenter">
+            <slot name="footer"></slot>
+            <template is="dom-if" if="[[dismissal]]">
+                <paper-button raised class="dialog-footer-button dialog-dismiss-button" dialog-dismiss on-tap="actionDismiss">[[dialogCancelText]]</paper-button>
+            </template>
+            <template is="dom-if" if="[[confirmation]]">
+                <paper-button raised class="dialog-footer-button dialog-confirm-button" dialog-confirm autofocus on-tap="actionConfirm">[[dialogConfirmText]]</paper-button>
+            </template>
+        </div>
+    </template>
+<!--
+The `ordent-dialog` element exposes an easy to use dialog styled modal based on paper-dialog behaviour. We already implemented 4 themes for easy to use setup and a list style dialog trigger.
+    <ordent-dialog class="info" id="info"><p>Ini Deskripsi</p></ordent-dialog>
+You can trigger the dialog easily with open and close function, just like paper-dialog.
+-->
+    <script>
+        class OrdentDialog extends Polymer.mixinBehaviors([Polymer.PaperDialogBehavior, Polymer.NeonAnimationRunnerBehavior], Polymer.Element) {
+            /**
+            * Fired before a request is sent.
+            * dismiss
+            * @event dialog-dismiss
+            */
+
+            /**
+            * Fired before a request is sent.
+            * confirm
+            * @event dialog-confirm
+            */
+
+
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'ordent-dialog';
+            }
+
+            static get listeners() {
+                return {
+                    'neon-animation-finish': '_onNeonAnimationFinish'
+                }
+            }
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    /**
+                    * Title of the dialog
+                    */
+                    title: {
+                        type: String,
+                        value: ""
+                    },
+                    /**
+                    * Flag for list type dialog to trigger, set it to true to show the list that you set in listContent
+                    */
+                    list: {
+                        type: Boolean,
+                        value: false
+                    },
+                    /**
+                    * Set this to true if you want to show the cancel button
+                    */
+                    dismissal: {
+                        type: Boolean,
+                        value: true
+                    },
+                    /**
+                    * Text for the cancel button.
+                    */
+                    dialogCancelText : {
+                        type : String,
+                        value : "Cancel"
+                    },
+                    /**
+                    * Set this to true if you want to show the confirmation button
+                    */
+                    confirmation: {
+                        type: Boolean,
+                        value: true
+                    },
+                    /**
+                    * Text for confirmation button
+                    */
+                    dialogConfirmText : {
+                        type : String,
+                        value : "Ok"
+                    },
+                    /**
+                    * the content for list type dialog. Insert your list in array manner of type.
+                    */
+                    listContent: {
+                        type: Array,
+                        value: function () {
+                            return []
+                        }
+                    }
+                };
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function () {
+
+                });
+            }
+
+            actionDismiss(){
+                this.dispatchEvent(new CustomEvent("dialog-dismiss"));
+            }
+
+            actionConfirm(){
+                this.dispatchEvent(new CustomEvent("dialog-confirm"));
+            }
+
+            close(){
+                this.set('listContent', []);
+                super.close();
+            }
+        }
+
+        window.customElements.define(OrdentDialog.is, OrdentDialog);
+    </script>
+</dom-module>

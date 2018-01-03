@@ -1,0 +1,33 @@
+{
+  "name": "ordent-collection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "gutenberg-web-type": "^1.2.3",
+    "redux": "^3.7.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.23.2",
+    "gulp": "^3.9.1",
+    "gulp-dest": "^0.2.3",
+    "gulp-notify": "^3.0.0",
+    "gulp-pipe": "^1.0.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.2",
+    "gulp-template": "^4.0.0",
+    "gulp-template-html": "^0.2.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "lint": "npm run lint:javascript && polymer lint",
+    "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+    "test": "polymer test",
+    "test:integration": "polymer build # test that psk builds without error with the CLI",
+    "build": "bower update && polymer build",
+    "serve": "polymer serve --compile always | npm run watch",
+    "watch": "browser-sync start --proxy http://localhost:8081 --files '*.html, *.js, images/*' --no-open --no-ui --index /",
+    "deploy": "bower update && polymer build && firebase deploy --only hosting"
+  }
+}

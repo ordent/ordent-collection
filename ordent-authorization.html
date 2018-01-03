@@ -1,0 +1,209 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="scripts/ordent-authorization-scripts.html">
+<link rel="import" href="ordent-state.html">
+<dom-module id="ordent-authorization">
+    <template>
+        <iron-ajax id="uploadElement"></iron-ajax>
+    </template>
+    <script>
+        /**
+         * `ordent-authorization` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        StateMixin = OrdentState(window.AppState.initialState, window.AppState.reducer);
+        
+        class OrdentAuthorization extends StateMixin(Polymer.Element) {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'ordent-authorization';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    users : {
+                        type : Object,
+                        statePath: 'users'
+                    },
+                    model : {
+                        type : Object,
+                        value : undefined
+                    },
+                    loginUrl : {
+                        type : String,
+                        value : ""
+                    },
+                    relogUrl : {
+                        type : String,
+                        value : ""
+                    },
+                    cookies : {
+                        type : Boolean,
+                        value : false
+                    },
+                    storeName : {
+                        type : String,
+                        value : ''
+                    }
+                };
+            }
+
+            static get actions() {
+				return {
+					userLogin: function (users, token) {
+						return {
+							type: 'USER_LOGIN',
+							users: users,
+							token: token
+						}
+					},
+					userUpdated: function (user) {
+						return {
+							type: 'USER_UPDATED',
+							users: users
+						}
+					},
+					userLogout: function () {
+						let promise = new Promise((resolve, reject)=>{
+							resolve(true);
+						})
+						return {
+							type: 'USER_LOGOUT',
+							result : promise
+						}
+					}
+				}
+			}
+	
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+            logout(){
+                let result = this.dispatch('userLogout');
+                result.then(this._logoutSuccess)
+                .bind(this);
+            }
+
+            _logoutSuccess(){
+                this.dispatchEvent(new CustomEvent('authorization-logout-success', {detail : {}}));
+            }
+
+            login(username, password){
+                if(this.model != undefined){
+                    let result = this.model.login(username, password);
+                }else{
+                    let options = {
+                        method : 'POST',
+                        url : this.loginUrl,
+                        body : {
+                            username : username,
+                            password : password
+                        }
+                    };
+                    let xhr = this.shadowRoot.querySelector('#uploadElement').generateRequest();
+                    xhr.send(options);
+                    let result = xhr.completes;
+                }
+
+                result
+                    .then(this._loginSuccess)
+                    .catch(this._loginFailed)
+                    .bind(this);
+            }
+
+            _loginSuccess(e){
+                let result = this.dispatch('userLogin', e.data.users, e.data.token);
+                let self = this;
+                result.then(function(f){
+                    self.dispatchEvent(new CustomEvent('authorization-login-success', {detail : e.data}));
+                }).catch(function(g){
+                    self.dispatchEvent(new CustomEvent('authorization-login-failed', {detail : e.data}));
+                })
+            }
+            
+            _loginFailed(e){
+                self.dispatchEvent(new CustomEvent('authorization-login-failed', {detail : e.meta}));
+            }
+
+            relog(){
+                if(!this.cookies){
+                    if(this.localStorage.getItem(this.storeName)){
+                        let token = this.localStorage.getItem(this.storeName).token;
+                    }else if(this.sessionStorage.getItem(this.storeName)){
+                        let token = this.sessionStorage.getItem(this.storeName).token;
+                    }else{
+                        this.dispatchEvent(new CustomEvent('authorization-login-failed', {detail : {
+                            message : "no token found"
+                        }}));
+                    }
+
+                    if(token != undefined){
+                        if(this.model != undefined){
+                            let result = this.model.relog(token);
+                        }else{
+                            let options = {
+                                method : 'POST',
+                                url : this.relogUrl,
+                                body : {
+                                    token : token
+                                }
+                            };
+                            let xhr = this.shadowRoot.querySelector('#uploadElement').generateRequest();
+                            xhr.send(options);
+                            let result = xhr.completes;
+                        }
+
+                        result
+                            .then(this._relogSuccess)
+                            .catch(this._relogFailed)
+                            .bind(this);
+                    }
+                }
+            }
+
+            _relogSuccess(e){
+                let result = this.dispatch('userUpdate', e.data.users, e.data.token);
+                let self = this;
+                result.then(function(f){
+                    self.dispatchEvent(new CustomEvent('authorization-login-success', {detail : e.data}));
+                }).catch(function(g){
+                    self.dispatchEvent(new CustomEvent('authorization-login-failed', {detail : e.data}));
+                })
+            }
+
+            _relogFailed(e){
+                self.dispatchEvent(new CustomEvent('authorization-login-failed', {detail : e.meta}));
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function() {
+                    // this.dispatch('userLogin',{name : 'test'}, "");
+                });
+            }
+
+        }
+
+        window.customElements.define(OrdentAuthorization.is, OrdentAuthorization);
+    </script>
+</dom-module>

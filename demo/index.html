@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>ordent-collection demo</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../bower_components/iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../bower_components/paper-button/paper-button.html">
+    <link rel="import" href="../ordent-dialog.html">
+    <link rel="import" href="../ordent-single-upload.html">
+    <link rel="import" href="../ordent-multiple-upload.html">
+    <link rel="import" href="../ordent-authorization.html">
+    <!-- <link rel="import" href="../ordent-test.html"> -->
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+        <paper-button onclick="info.open()" raised>Buka Info</paper-button>
+        <paper-button onclick="info.close()" raised>Tutup Info</paper-button>
+        <paper-button onclick="warning.open()" raised>Buka Warning</paper-button>
+        <paper-button onclick="warning.close()" raised>Tutup Warning</paper-button>
+        <paper-button onclick="danger.open()" raised>Buka Danger</paper-button>
+        <paper-button onclick="danger.close()" raised>Tutup Danger</paper-button>
+        <paper-button onclick="success.open()" raised>Buka Success</paper-button>
+        <paper-button onclick="success.close()" raised>Tutup Success</paper-button>
+      <demo-snippet>
+        <template>
+          <ordent-dialog class="info" id="info"><p>Ini Deskripsi</p></ordent-dialog>
+          <ordent-dialog class="warning" id="warning"><p>Ini Deskripsi</p></ordent-dialog>
+          <ordent-dialog class="danger" id="danger"><p>Ini Deskripsi</p></ordent-dialog>
+          <ordent-dialog class="success" id="success"><p>Ini Deskripsi</p></ordent-dialog>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <ordent-single-upload view auto-resize auto-upload upload-attribute="files" upload-url="https://api.alatberat.ordent.id/api/files"></ordent-single-upload>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet>
+        <template>
+          <ordent-multiple-upload upload-attribute="files" upload-url="https://api.alatberat.ordent.id/api/files"></ordent-multiple-upload>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet>
+          <template>
+            <ordent-authorization></ordent-authorization>
+          </template>
+        </demo-snippet>
+    </div>
+  </body>
+</html>

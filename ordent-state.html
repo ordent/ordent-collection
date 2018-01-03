@@ -1,0 +1,26 @@
+<link rel="import" href="scripts/ordent-redux.html">
+<script>
+    (function () {
+            var initialState = {};
+            var currentState = initialState;
+            var reduceFunction = function (state, type) {
+                
+            }
+            var reducer =  function (state, action) {
+                if (!state) return initialState;
+                return reduceFunction(state, action);
+            }
+            var createStore = function () {
+                return Redux.createStore(reducer);
+            }
+            var createMixin = function () {
+                return PolymerRedux(createStore());
+            }
+            var StateFactory = function(state, reducer){
+                initialState = state;
+                reduceFunction = reducer;
+                return createMixin();
+            }
+        window.OrdentState = StateFactory;
+    }());
+</script>

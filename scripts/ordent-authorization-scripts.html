@@ -1,0 +1,36 @@
+<script>
+    (function () {
+        var AppState = {
+            initialState: {
+                users: {},
+                token: "",
+                isLoggedIn: false,
+                expiredTime: "",
+                env: "local"
+            },
+            reducer: function (state, action) {
+                console.log(state, action);
+                switch (action.type) {
+                    case 'USER_LOGIN':
+                        const users = action.users;
+                        const token = action.token;
+                        const expiredTime = action.expiredTime;
+                        const isLoggedIn = true;
+                        const env = action.env;
+                        return Object.assign({}, state, { users: users, token: token, isLoggedIn: isLoggedIn, expiredTime: expiredTime });
+                    case 'USER_LOGOUT':
+                        return Object.assign({}, state, { users: {}, token: "", isLoggedIn: false, expiredTime: "" });
+                    case 'USER_UPDATED':
+                        const user_update = action.users;
+                        return Object.assign({}, state, { users: user_update });
+                    default:
+                        return state;
+                }
+            }
+        }
+
+        if(!window.hasOwnProperty('AppState')){
+            window.AppState = AppState;
+        }
+    })(window);
+</script>
