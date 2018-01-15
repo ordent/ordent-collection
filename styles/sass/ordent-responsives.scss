@@ -1,3 +1,7 @@
+/*!  
+* CSS RESPONSIVES START 
+**/
+
 $mobile : 400px;
 $phablet : 550px;
 $tablet : 750px;
@@ -52,7 +56,7 @@ $deskhd : 1200px;
     justify-content: space-between;
 }
 
-.stack.row.reverse{
+.stack.reverse{
     flex-direction: column-reverse;
 }
 
@@ -80,10 +84,6 @@ $deskhd : 1200px;
     display: grid;
 }
 @for $i from 1 through 12{
-    .flex-sm-#{$i}{
-        max-width: 100%/(12/$i);
-    }
-
     .row{
         .offset-#{$i}{
             margin-left: 100%/(12/$i);
@@ -123,19 +123,72 @@ $deskhd : 1200px;
         overflow: hidden;
     }
 
+    .flex-xl-#{$i}{
+        max-width: 100%;
+    }
+    
+    .flex-lg-#{$i}{
+        max-width: 100%;
+    }
+
+    .flex-md-#{$i}{
+        max-width: 100%;
+    }
+
+    .flex-sm-#{$i}{
+        max-width: 100%/(12/$i);
+    }
+
+
     @media(min-width : $tablet){
+        .flex-xl-#{$i}{
+            max-width: 100%;
+        }
+        
+        .flex-lg-#{$i}{
+            max-width: 100%;
+        }
+
+        .flex-sm-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
         .flex-md-#{$i}{
             max-width: 100%/(12/$i);
         }
     }
 
     @media(min-width : $desktop){
+        .flex-xl-#{$i}{
+            max-width: 100%;
+        }
+        
+        .flex-md-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
+        .flex-sm-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
         .flex-lg-#{$i}{
             max-width: 100%/(12/$i);
         }
     }
 
     @media(min-width : $deskhd){
+        .flex-lg-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
+        .flex-md-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
+        .flex-sm-#{$i}{
+            max-width: 100%/(12/$i);
+        }
+
         .flex-xl-#{$i}{
             max-width: 100%/(12/$i);
         }   

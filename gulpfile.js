@@ -20,5 +20,5 @@ gulp.task('responsives', function(e){
 gulp.task('default', ['styles'],function () {
     gulp.watch('./styles/sass/ordent-styles.scss', ['styles']);
     gulp.watch('./styles/sass/ordent-responsives.scss', ['responsives']);
-    gulp.watch('./gulpfile.js', ['styles', 'responsive']);
+    gulp.watch('./gulpfile.js', ['styles', 'responsives']);
 });

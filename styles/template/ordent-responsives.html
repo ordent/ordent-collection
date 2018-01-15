@@ -1,12 +1,52 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
+<!--
+`<ordent-responsives>` injects a stylesheet module for flex and *grid layouting system for your element.
+In typical use, include `ordent-responsives` string to your template styles.
+
+## container
+Use `.container` to contain your element to centerize the content alignment and block, perfect for your website content.
+At default, .container will use 80% of your center screen width, `.width-90` and `.width-95` exists to change that value.
+
+    <div class="container width-95"></div>
+    
+## row
+Use `.row` to add the row effect for your element, all element inside `row` will have flex behaviour. Also `.row` can be supported with `space-` syntax in order to change flex behaviour.
+    .space-around
+    .space-between
+    .space-center
+    .space-start
+    .space-end;
+
+To reverse the direction of the column inside, use the `.reverse` class with row and stack.
+
+If you want to handle different axis of layout, you could use `.stack` class.
+
+## column
+In order to accomadate different device width, the column will have 4 different category.
+mobile : sm - min-width: 400px
+tablet : md - min-width: 750px
+desktop : lg - min-width : 1000px
+desktop-hd : xl - min-width: 1200px
+
+There are 12 different column for one row, with each value is 1/12 of `.row` width.
+Use `.flex-{dev}-{width}` to add the width for each block.
+
+In case you need to give an offset for the column, you can use `.offset-{width}`.
+
+You could use `.flex-left` or `.flex-right` to give alignment for the block.
+
+`.row-break` could be used for to stop the row at available column before, and then break to the next line.
+-->
 <dom-module id="ordent-responsives">
     <template>
         <style>
             :host {
                 display: block
             }
-            <%= css %>
+            /* <%= css %> /*
+             * Styles Responsive End
+             */
         </style>
     </template>
 </dom-module>

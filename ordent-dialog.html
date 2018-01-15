@@ -6,6 +6,15 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="./ordent-styles.html">
+
+<!--
+The `ordent-dialog` element exposes an easy to use dialog styled modal based on paper-dialog behaviour. We already implemented 4 themes for easy to use setup and a list style dialog trigger.
+    <ordent-dialog class="info" id="info"><p>Ini Deskripsi</p></ordent-dialog>
+You can trigger the dialog easily with open and close function, just like paper-dialog.
+
+## Import
+<link rel="import" href="/bower_components/ordent-collection/ordent-dialog.html">
+-->
 <dom-module id="ordent-dialog">
     <template>
         <style include="ordent-styles paper-dialog-shared-styles">
@@ -138,11 +147,7 @@
             </template>
         </div>
     </template>
-<!--
-The `ordent-dialog` element exposes an easy to use dialog styled modal based on paper-dialog behaviour. We already implemented 4 themes for easy to use setup and a list style dialog trigger.
-    <ordent-dialog class="info" id="info"><p>Ini Deskripsi</p></ordent-dialog>
-You can trigger the dialog easily with open and close function, just like paper-dialog.
--->
+
     <script>
         class OrdentDialog extends Polymer.mixinBehaviors([Polymer.PaperDialogBehavior, Polymer.NeonAnimationRunnerBehavior], Polymer.Element) {
             /**
