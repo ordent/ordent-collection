@@ -89,7 +89,7 @@
             <button class="input-button" tabindex="-1" id="inputButton">[[inputButtonText]]</button>
         </div>
         
-        <template is="dom-if" if=[[srcView]]>
+        <template is="dom-if" if=[[urlView]]>
             <div class="result-wrapper">
                 [[src]]
             </div>
@@ -169,7 +169,7 @@
                         type : String,
                         value : "PILIH FILE . . ."
                     },
-                    srcView:{
+                    urlView:{
                         type: Boolean,
                         value: false
                     }
