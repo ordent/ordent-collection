@@ -88,9 +88,13 @@
             <!-- <paper-button id="inputButton" on-tap="actionInputButton" class="input-button" raised>[[inputButtonText]]</paper-button> -->
             <button class="input-button" tabindex="-1" id="inputButton">[[inputButtonText]]</button>
         </div>
-        <div class="result-wrapper">
-            [[src]]
-        </div>
+        
+        <template is="dom-if" if=[[srcView]]>
+            <div class="result-wrapper">
+                [[src]]
+            </div>
+        </template>
+        
         <iron-ajax id="uploadElement"></iron-ajax>
         <paper-dialog id="dialog" modal>
             <paper-spinner active></paper-spinner>
@@ -164,6 +168,10 @@
                     inputButtonText : {
                         type : String,
                         value : "PILIH FILE . . ."
+                    },
+                    srcView:{
+                        type: Boolean,
+                        value: false
                     }
                 };
             }
